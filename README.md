@@ -8,7 +8,7 @@
 
 # Project Setup
 1. Git Clone the project
-```git clone https://github.com/The-Peacemaker/win95.git```
+```git clone https://github.com/The-Peacemaker/Win95_Final.git```
 
 2. Make sure you've installed Vue, [Official documentation](https://vuejs.org/v2/guide/installation.html)
 

@@ -7,13 +7,17 @@
 - Tailwind CSS
 
 # Project Setup
-1. Git Clone the project
-```git clone https://github.com/The-Peacemaker/Win95_Final.git```
+1. Git Clone the project <br>
+```git clone https://github.com/The-Peacemaker/Win95_Final.git``` <br> 
+ ```cd Win95_Final```
 
-2. Make sure you've installed Vue, [Official documentation](https://vuejs.org/v2/guide/installation.html)
+3. Make sure you've installed Vue, [Official documentation](https://vuejs.org/v2/guide/installation.html)
 
-3. Install packages
+4. Install packages
 ```npm install```
 
-4. Compile project and serve
+5. Compile project and serve
 ```npm run dev```
+
+> [!TIP]
+> Add new apps by VUE Js code and Pinia API.

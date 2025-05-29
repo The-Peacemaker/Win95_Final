@@ -108,6 +108,14 @@ onMounted(() => {
       style="position: absolute; z-index: 9999; left: 0; bottom: 36px"
     ></StartMenu>
     <navbar style="position: absolute; bottom: 0; z-index: 9999" id="navbar" />
+
+    <div id="hit-counter" class="view-counter">
+      <img
+        alt="Page Views"
+        src="https://hits.sh/benedictchacko.netlify.app.svg?style=for-the-badge&label=VISITORS&extraCount=106&color=1157cc&labelColor=000000"
+      />
+    </div>
+
   </div>
 </template>
 
@@ -181,4 +189,12 @@ h6 {
   top: 0 !important;
   right: 0 !important;
 }
+
+.view-counter {
+  position: fixed;
+  top: 30px;
+  right: 20px;
+  z-index: 1000;
+}
+
 </style>

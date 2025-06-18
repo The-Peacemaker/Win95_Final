@@ -120,13 +120,14 @@ export const useWindowsStore = defineStore("windows", {
     //     showInAppGrid: true,
     //     showInNavbar: true,
     //   },
+    /*
     {
         windowId: "MemoriesWindow",
         windowState: "close",
         displayName: "Memories",
         windowComponent: "window",
         windowContent: "memory",
-        windowContentPadding: {
+        windowContentPadding: {                                     //MEMORY WINDOW FOR FUTURE USE
           top: null,
           right: null,
           bottom: null,
@@ -148,7 +149,7 @@ export const useWindowsStore = defineStore("windows", {
         displayName: "Music",
         windowComponent: "window",
         windowContent: "music",
-        windowContentPadding: {
+        windowContentPadding: {                                    //MUSIC WINDOW FOR FUTURE USE
           top: null,
           right: null,
           bottom: null,
@@ -163,7 +164,7 @@ export const useWindowsStore = defineStore("windows", {
         showInAppGrid: true,
         showInNavbar: true,
       },
-
+      */
       {
         windowId: "MailWindow",
         windowState: "close",

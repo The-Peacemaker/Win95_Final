@@ -40,6 +40,7 @@
         </p>
     </div>
 
+<!--
     <div class="pt-7">
         <h3 class="underline font-bold text-md pb-1">Projects & Achievements</h3>
     </div>
@@ -48,7 +49,7 @@
         <div class="">
             <h3 class="pb-1" style="text-align: center;"><b>WILL UPDATE SOON</b></h3>
         </div>
-<!--
+
 
     <div class="pt-7">
 
@@ -76,7 +77,7 @@
                 <a style="color: #ff5733" href="https://github.com/The-Peacemaker">here</a>!
             </p>
         </div>
-    </div>
+   <!-- </div> -->
 
     <div class="pt-7">
         <h3 class="pb-1"><b>Résumé</b></h3>

@@ -211,10 +211,15 @@ export const useWindowsStore = defineStore("windows", {
         folderContent: [
             {
               id: 0,
-              title: "COMING SOON!",
+              title: "CERTIFICATES",
               content: [
                 {
-
+                  id: 0,
+                  title: "Q-3.JPG",
+                  type: "photo",
+                  src: ""https://cdn.jsdelivr.net/gh/The-Peacemaker/Win95_Final@main/public/photos/Hack2skill-Certificate.png"",
+                  altText: "Q-3.JPG",
+                  size: 2477506,
                 },
               ],
               size: 5109084,

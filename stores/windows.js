@@ -215,16 +215,16 @@ export const useWindowsStore = defineStore("windows", {
               content: [
                 {
                   id: 0,
-                  title: "Q-3.JPG",
+                  title: "AI-LAB.JPG",
                   type: "photo",
-                  src: ""https://cdn.jsdelivr.net/gh/The-Peacemaker/Win95_Final@main/public/photos/Hack2skill-Certificate.png"",
-                  altText: "Q-3.JPG",
+                  src: "https://cdn.jsdelivr.net/gh/The-Peacemaker/Win95_Final@main/public/photos/Hack2skill-Certificate.png",
+                  altText: "AI-LAB.JPG",
                   size: 2477506,
                 },
               ],
               size: 5109084,
               type: "folder",
-              altText: "COMING_SOON", 
+              altText: "CERTIFICATE_FOLDER", 
             },
         ],
       /*

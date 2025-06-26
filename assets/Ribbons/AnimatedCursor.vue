@@ -1,105 +1,129 @@
 <template>
-  <!--  FOLLOWER CIRCLE  -->
+  <!-- Custom cursor -->
   <div
     ref="cursor"
-    class="animated-cursor"
-    :style="{ width: size + 'px', height: size + 'px', opacity: hidden ? 0 : 1 }"
+    class="cursor-ring pointer-events-none fixed left-0 top-0 z-50
+           h-8 w-8 rounded-2xl backdrop-brightness-60 transition-opacity duration-300"
   />
 </template>
 
-<script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+<script setup lang="ts">
+import { ref, watchEffect, onMounted, onBeforeUnmount } from 'vue'
 import gsap from 'gsap'
 
-/* ------------------------------------------------------------- */
-/*  Reactive state                                               */
-/* ------------------------------------------------------------- */
-const cursor = ref(null)
-const size   = ref(32)           // default diameter
-const hidden = ref(true)
-const mouse  = { x: 0, y: 0 }    // initialized in onMounted
+/* ------------------------------------------------------------------ */
+/* refs                                                               */
+/* ------------------------------------------------------------------ */
+const cursor = ref<HTMLElement | null>(null)
+const mouse = ref({ x: 0, y: 0 })
+const hoverRect = ref<DOMRect | null>(null)
 
-/* ------------------------------------------------------------- */
-/*  Handlers                                                     */
-/* ------------------------------------------------------------- */
-function updateMouse (e) {
-  hidden.value = false
-  mouse.x = e.clientX
-  mouse.y = e.clientY
+/* ------------------------------------------------------------------ */
+/* utilities                                                          */
+/* ------------------------------------------------------------------ */
+function findInteractive(el: HTMLElement | null): HTMLElement | null {
+  while (el) {
+    if (['a', 'button'].includes(el.tagName.toLowerCase()) ||
+        el.dataset.cursor === 'interactive')
+      return el
+    el = el.parentElement
+  }
+  return null
 }
 
-function leaveWindow () {
-  hidden.value = true
+/* ------------------------------------------------------------------ */
+/* handlers                                                           */
+/* ------------------------------------------------------------------ */
+function handleMove(e: MouseEvent) {
+  mouse.value = { x: e.clientX, y: e.clientY }
+  const target = findInteractive(e.target as HTMLElement | null)
+  hoverRect.value = target ? target.getBoundingClientRect() : null
 }
 
-function handleEnter () {
-  const rect = this.getBoundingClientRect()
-  size.value = Math.max(rect.width, rect.height) + 16
-}
-function handleLeave () {
-  size.value = 32
-}
-
-/* ------------------------------------------------------------- */
-/*  Lifecycle                                                    */
-/* ------------------------------------------------------------- */
-const hoverEls = []
-
+/* ------------------------------------------------------------------ */
+/* lifecycle                                                          */
+/* ------------------------------------------------------------------ */
 onMounted(() => {
-  /* initialise mouse centre AFTER window exists (SSR-safe) */
-  mouse.x = window.innerWidth  / 2
-  mouse.y = window.innerHeight / 2
+  if (cursor.value)
+    gsap.set(cursor.value, { xPercent: -50, yPercent: -50 })
 
-  gsap.set(cursor.value, { xPercent: -50, yPercent: -50 })
-
-  addEventListener('mousemove', updateMouse)
-  addEventListener('mouseleave', leaveWindow)
-
-  gsap.ticker.add(() => {
-    gsap.to(cursor.value, {
-      x: mouse.x,
-      y: mouse.y,
-      duration: 0.4,
-      ease: 'power3.out'
-    })
-  })
-
-  // enlarge on links / buttons / custom targets
-  document.querySelectorAll('a,button,.hover-target').forEach(el => {
-    el.addEventListener('mouseenter', handleEnter)
-    el.addEventListener('mouseleave', handleLeave)
-    hoverEls.push(el)
-  })
+  window.addEventListener('mousemove', handleMove)
 })
 
 onBeforeUnmount(() => {
-  removeEventListener('mousemove', updateMouse)
-  removeEventListener('mouseleave', leaveWindow)
-  gsap.ticker.removeAll()
+  window.removeEventListener('mousemove', handleMove)
+})
 
-  hoverEls.forEach(el => {
-    el.removeEventListener('mouseenter', handleEnter)
-    el.removeEventListener('mouseleave', handleLeave)
-  })
+/* ------------------------------------------------------------------ */
+/* animation watcher                                                  */
+/* ------------------------------------------------------------------ */
+watchEffect(() => {
+  if (!cursor.value) return
+
+  if (hoverRect.value) {
+    // Snap to centre of hovered element
+    gsap.to(cursor.value, {
+      x: hoverRect.value.left + hoverRect.value.width / 2,
+      y: hoverRect.value.top + hoverRect.value.height / 2,
+      duration: 0.5, ease: 'power3.out',
+    })
+    // Scale instead of rewriting width/height for perfect circle
+    gsap.to(cursor.value, {
+      scale: (hoverRect.value.width + 16) / 32,
+      duration: 0.35, ease: 'power4.out',
+    })
+  } else {
+    // Follow the pointer
+    gsap.to(cursor.value, {
+      x: mouse.value.x,
+      y: mouse.value.y,
+      duration: 0.5, ease: 'power3.out',
+    })
+    gsap.to(cursor.value, { scale: 1, duration: 0.35, ease: 'power4.out' })
+  }
 })
 </script>
 
 <style scoped>
-/* 1. Hide native cursor app-wide */
-html, body {
-  cursor: none;
-}
+/* Tailwind can’t express these two properties, so keep them in CSS */
 
-/* 2. Circle styling */
-.animated-cursor {
+.cursor-ring {
+  pointer-events: none;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.12);
-  pointer-events: none;
-  will-change: transform, width, height, opacity;
-  transition: opacity .25s ease;
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+
+  /* Modern glass effect */
+  background: rgb(255, 0, 0);
+  border: 1.5px solid rgba(67, 1, 247, 0.877);
+  
+  
+
+  /* Ring glow */
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
+
+  /* Blend mode for dark-light contrast */
+  mix-blend-mode: exclusion;
+
+  /* Animation setup */
+  transition:
+    width 0.3s ease,
+    height 0.3s ease,
+    background 0.3s ease,
+    border 0.3s ease;
+
+  z-index: 999;
+  transform: translate(-50%, -50%);
+  animation: pulseRing 5s infinite ease-in-out;
 }
+
+@keyframes pulseRing {
+  0%, 100% { box-shadow: 0 0 0px rgba(255,255,255,0.1); }
+  50%      { box-shadow: 0 0 10px rgba(255,255,255,0.3); }
+}
+
+
 </style>

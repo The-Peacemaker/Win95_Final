@@ -97,7 +97,7 @@ watchEffect(() => {
   border-radius: 9999px;
 
   /* Modern glass effect */
-  background: rgb(255, 0, 0);
+  background: rgba(255, 0, 0, 0.29);
   border: 1.5px solid rgba(67, 1, 247, 0.877);
   
   

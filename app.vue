@@ -12,6 +12,7 @@ import Music from './views/Music.vue'
 //import Wwdc2023 from './views/Wwdc2023.vue'
 import ImagePreviewWindow from './templates/ImagePreviewWindow.vue'
 import StartMenu from './templates/StartMenu.vue'
+import AnimatedCursor from './assets/Ribbons/AnimatedCursor.vue';
 import {
     useWindowsStore
 } from './stores/windows'
@@ -79,6 +80,7 @@ onMounted(() => {
         :key="window.key" 
         :aria-label="window.displayName"
       >
+      <AnimatedCursor />
           <component 
             :is="windowComponents.find(comp => comp.name === window.windowComponent).comp"
             :nameOfWindow="window.windowId" 

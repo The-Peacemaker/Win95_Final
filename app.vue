@@ -80,7 +80,15 @@ onMounted(() => {
         :key="window.key" 
         :aria-label="window.displayName"
       >
+
+      <div id="hit-counter" class="view-counter">
+      <img
+        alt="Page Views"
+        src="https://hits.sh/benedictchacko.netlify.app.svg?style=for-the-badge&label=VISITORS&extraCount=10&color=1157cc&labelColor=000000"
+      />
+      </div>
       <AnimatedCursor /> 
+
           <component 
             :is="windowComponents.find(comp => comp.name === window.windowComponent).comp"
             :nameOfWindow="window.windowId" 
@@ -102,6 +110,7 @@ onMounted(() => {
             <component :is="slotViews.find(comp => comp.name === window.windowContent).comp"></component>
           </template>
           </component>
+
         </div>
         <AppGrid />
     </div>
@@ -110,14 +119,6 @@ onMounted(() => {
       style="position: absolute; z-index: 9999; left: 0; bottom: 36px"
     ></StartMenu>
     <navbar style="position: absolute; bottom: 0; z-index: 9999" id="navbar" />
-
-    <div id="hit-counter" class="view-counter">
-      <img
-        alt="Page Views"
-        src="https://hits.sh/benedictchacko.netlify.app.svg?style=for-the-badge&label=VISITORS&extraCount=106&color=1157cc&labelColor=000000"
-      />
-    </div>
-
   </div>
 </template>
 

@@ -80,7 +80,7 @@ onMounted(() => {
         :key="window.key" 
         :aria-label="window.displayName"
       >
-      <AnimatedCursor />
+      <AnimatedCursor /> 
           <component 
             :is="windowComponents.find(comp => comp.name === window.windowComponent).comp"
             :nameOfWindow="window.windowId" 

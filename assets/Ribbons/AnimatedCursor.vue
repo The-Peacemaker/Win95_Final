@@ -87,6 +87,10 @@ watchEffect(() => {
 <style scoped>
 /* Tailwind can’t express these two properties, so keep them in CSS */
 
+/* ------------------------------------------------------------------ */
+/* Cursor Ring (Important)                                            */
+/* ------------------------------------------------------------------ */
+
 .cursor-ring {
   pointer-events: none;
   position: fixed;
@@ -98,12 +102,12 @@ watchEffect(() => {
 
   /* Modern glass effect */
   background: rgba(255, 0, 0, 0);
-  border: 1.5px solid rgba(67, 1, 247, 0.877);
+  border: 1.5px solid rgba(36, 5, 119, 0.877);
   
   
 
   /* Ring glow */
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(255,255,255,0.3);
 
   /* Blend mode for dark-light contrast */
   mix-blend-mode: exclusion;
@@ -117,13 +121,13 @@ watchEffect(() => {
 
   z-index: 999;
   transform: translate(-50%, -50%);
-  animation: pulseRing 5s infinite ease-in-out;
+ /* animation: pulseRing 5s infinite ease-in-out;  */
 }
-
+/*
 @keyframes pulseRing {
   0%, 100% { box-shadow: 0 0 0px rgba(255,255,255,0.1); }
   50%      { box-shadow: 0 0 10px rgba(255,255,255,0.3); }
 }
-
+*/
 
 </style>

@@ -1,3 +1,5 @@
+<!--  CURSOR TRIAL 1 -->>
+
 <template>
   <!--  FOLLOWER CIRCLE  -->
   <div
@@ -103,3 +105,4 @@ html, body {
   transition: opacity .25s ease;
 }
 </style>
+

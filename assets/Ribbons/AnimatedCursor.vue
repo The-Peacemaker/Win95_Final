@@ -69,7 +69,7 @@ watchEffect(() => {
     })
     // Scale instead of rewriting width/height for perfect circle
     gsap.to(cursor.value, {
-      scale: (hoverRect.value.width + 16) / 32,
+      scale: (hoverRect.value.width + 16) / 22,
       duration: 0.35, ease: 'power4.out',
     })
   } else {
@@ -96,13 +96,13 @@ watchEffect(() => {
   position: fixed;
   top: 0;
   left: 0;
-  width: 36px;
-  height: 36px;
+  width: 26px;
+  height: 26px;
   border-radius: 9999px;
 
   /* Modern glass effect */
   background: rgba(255, 0, 0, 0);
-  border: 1.5px solid rgba(36, 5, 119, 0.877);
+  border: .5px solid rgba(36, 5, 119, 0.877);
   
   
 

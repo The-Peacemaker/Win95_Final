@@ -1,9 +1,15 @@
+/*-------------------------------------------*\
+    ANIMATED CURSOR BACKUP 
+\*-------------------------------------------*/
+
+
+<!-- 
 <template>
-  <!-- Custom cursor -->
+  // Custom cursor  
   <div
     ref="cursor"
     class="cursor-ring pointer-events-none fixed left-0 top-0 z-50
-           h-8 w-8 rounded-2xl backdrop-brightness-60 transition-opacity duration-300"
+           h-8 w-8 rounded-2xl backdrop-brightness-60 transition-opacity duration-300" 
   />
 </template>
 
@@ -85,7 +91,7 @@ watchEffect(() => {
 </script>
 
 <style scoped>
-/* Tailwind can’t express these two properties, so keep them in CSS */
+/* Tailwind can't express these two properties, so keep them in CSS */
 
 .cursor-ring {
   pointer-events: none;
@@ -127,3 +133,4 @@ watchEffect(() => {
 
 
 </style>
+-->
